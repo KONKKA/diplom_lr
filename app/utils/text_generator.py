@@ -76,7 +76,6 @@ def get_proxies_admin_list_text(proxies: List[Dict], page: int = 1, per_page: in
 
     body = ""
     for proxy in page_proxies:
-        flag = country_code_to_flag(proxy["country"])
         status_icon = STATUS_ICONS.get(proxy["status"].lower(), "⚪")
 
         body += (

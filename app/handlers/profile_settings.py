@@ -52,7 +52,7 @@ async def process_contact_handler(message: Message, state: FSMContext, bot: Bot)
         try:
             await bot.delete_message(message.chat.id, message.message_id - 1)
             await bot.delete_message(message.chat.id, message.message_id - 2)
-        except:
+        except Exception:
             pass
 
     except ValueError as e:
