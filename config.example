@@ -1,0 +1,7 @@
+#rename this file to config.py
+TOKEN="Your Telegram Api Token"
+BOT_NAME = "Your Telegram Bot Name"
+SUPPORT_CHAT = "your support username without @"
+ADMINS = [999999] #list of admins
+DB_URL_PG = 'PostgresSQL connection link with SSL'
+CHECK_INTERVAL_SECONDS = 90
