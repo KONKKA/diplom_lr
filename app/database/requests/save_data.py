@@ -244,7 +244,7 @@ async def save_port_list(port_list: list[str], server_id: int) -> Optional[str]:
 
             summary = (
                     "\n".join(results) +
-                    f"\n\n📊 Підсумок:\n" +
+                    "\n\n📊 Підсумок:\n" +
                     f"Додано: {added_count}\n" +
                     f"Дублікатів: {duplicate_count}\n" +
                     f"Невалідних: {invalid_count}"

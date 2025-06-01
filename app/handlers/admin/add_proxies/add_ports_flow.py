@@ -3,8 +3,7 @@ import logging
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup
-from sqlalchemy import CreateEnginePlugin
+from aiogram.types import CallbackQuery, Message
 
 from app.database.requests.save_data import save_port_list
 from app.filters.isAdmin import IsAdmin

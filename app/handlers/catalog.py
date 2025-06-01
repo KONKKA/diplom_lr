@@ -1,16 +1,15 @@
-import asyncio
 import logging
 
 from aiogram import Router, F
 from aiogram.filters import StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import CallbackQuery, Message, InlineKeyboardMarkup
+from aiogram.types import CallbackQuery, Message
 
 from app.database.requests.get_data import (get_catalog_item_by_id, get_user_balance_by_tg_id,
                                             get_first_available_proxy_by_type_id,
                                             get_first_available_port_id_by_server_id,
-                                            get_current_proxies_price_per_week, get_task_status)
+                                            get_current_proxies_price_per_week)
 from app.database.requests.save_data import update_proxy_status, create_proxy_rental, decrease_user_balance, \
         update_port_status
 from app.database.requests.task_handler import add_task_to_queue, wait_for_task_completion
@@ -207,7 +206,7 @@ async def handle_confirm_purchase(callback: CallbackQuery, state: FSMContext):
 
         await callback.message.edit_text(
             "🎉 Вітаємо з успішною покупкою!\n\n"
-            f"Перейдіть в <b>📊 Мої проксі</b>\n", parse_mode="HTML"
+            "Перейдіть в <b>📊 Мої проксі</b>\n", parse_mode="HTML"
         )
         await state.clear()
         await send_main_menu(callback.from_user.id, message=callback.message)

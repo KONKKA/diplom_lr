@@ -1,7 +1,7 @@
 from aiogram import Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import CallbackQuery
 
 from app.database.requests.get_data import get_all_proxies_info
 from app.filters.isAdmin import IsAdmin

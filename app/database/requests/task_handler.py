@@ -1,5 +1,5 @@
 import asyncio
-from typing import Union, List, Tuple
+from typing import List, Tuple
 
 from sqlalchemy import select, func, delete
 

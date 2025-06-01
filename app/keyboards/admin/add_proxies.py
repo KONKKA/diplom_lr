@@ -1,5 +1,4 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from aiogram.utils import keyboard
 
 def get_operator_list_keyboard(count: int) -> InlineKeyboardMarkup:
     """
