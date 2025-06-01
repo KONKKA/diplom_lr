@@ -1,0 +1,19 @@
+[tool.ruff]
+
+src = ["."]
+
+line-length = 88
+
+target-version = "py313"
+
+ignore = ["E501", "E402"]
+
+select = ["E", "F", "B"]
+
+exclude = [
+    ".venv",
+    "migrations",
+    "__pycache__",
+    "scripts",
+    "docs",
+]
