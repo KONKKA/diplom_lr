@@ -5,6 +5,19 @@ from app.database.db import async_session
 
 
 async def create_proxy_task_queue_trigger():
+    """
+    Creates a PostgreSQL trigger and function to notify listeners after a row is inserted
+    into the `proxy_task_queue` table.
+
+    This function:
+        - Checks if the `notify_proxy_task_insert` function exists; creates it if missing.
+        - Checks if the `trg_proxy_task_insert` trigger exists; creates it if missing.
+        - The trigger calls `pg_notify` to send a notification on the 'proxy_task_event' channel
+          with a JSON payload describing the inserted task.
+
+    Raises:
+        IntegrityError: If a commit fails due to a constraint or integrity issue.
+    """
     async with async_session() as session:
         result_func = await session.execute(
             text("SELECT 1 FROM pg_proc WHERE proname = 'notify_proxy_task_insert'")
@@ -45,8 +58,20 @@ async def create_proxy_task_queue_trigger():
             raise
 
 async def create_proxy_task_queue_update_trigger():
+    """
+    Creates a PostgreSQL trigger and function to automatically update the `updated_at` field
+    when the `status` column in `proxy_task_queue` is changed to 'done' or 'error'.
+
+    This function:
+        - Checks for the `update_proxy_task_updated_at` function and creates it if missing.
+        - Adds the `trg_update_proxy_task_updated_at` trigger on `proxy_task_queue` if missing.
+        - The trigger fires BEFORE UPDATE and sets `updated_at` to `now()` only when `status` is
+          changed and the new value is either 'done' or 'error'.
+
+    Raises:
+        IntegrityError: If a commit fails due to a constraint or integrity issue.
+    """
     async with async_session() as session:
-        # Створення функції, якщо не існує
         result_func = await session.execute(
             text("SELECT 1 FROM pg_proc WHERE proname = 'update_proxy_task_updated_at'")
         )
@@ -63,7 +88,6 @@ async def create_proxy_task_queue_update_trigger():
                 $$ LANGUAGE plpgsql;
             """))
 
-        # Створення тригера, якщо не існує
         result_trigger = await session.execute(
             text("SELECT 1 FROM pg_trigger WHERE tgname = 'trg_update_proxy_task_updated_at'")
         )
