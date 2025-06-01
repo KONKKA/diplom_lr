@@ -104,7 +104,7 @@ async def handle_clear_queue(callback: CallbackQuery, state: FSMContext):
 
 
 @router.callback_query(IsAdmin(), F.data == "confirm_queue_clear")
-async def handle_clear_queue(callback: CallbackQuery, state: FSMContext):
+async def handle_confirm_clear_queue(callback: CallbackQuery, state: FSMContext):
     current_state = await state.get_state()
     if current_state == WatchingTasksState.is_watching_pending:
         total, deleted = await delete_tasks_by_status(TaskStatusEnum.pending)

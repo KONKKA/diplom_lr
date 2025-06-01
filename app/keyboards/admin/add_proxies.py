@@ -84,15 +84,8 @@ def get_confirm_add_operator_keyboard() -> InlineKeyboardMarkup:
 
 
 def get_protocols_list_keyboard(protocols: list) -> InlineKeyboardMarkup:
-    """
-    Повертає клавіатуру з кнопками з назвами протоколів та кнопкою "Назад".
-
-    :param protocols: список словників з протоколами (мають ключ 'id' і 'value')
-    :return: InlineKeyboardMarkup
-    """
     keyboard = InlineKeyboardMarkup(inline_keyboard=[])
 
-    row = []
     for protocol in protocols:
         btn = InlineKeyboardButton(
             text=protocol["value"],
