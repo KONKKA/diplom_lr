@@ -9,11 +9,6 @@ plugins:
         python:
           options:
             docstring_style: google
-            show_source: true
-            heading_level: 2
-          selection:
-            filters:
-              - "./app"
 
 markdown_extensions:
   - admonition
