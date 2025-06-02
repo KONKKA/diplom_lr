@@ -1,7 +1,6 @@
 
 from sqlalchemy.orm import DeclarativeBase
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
-
 from config import DB_URL_PG
 
 engine = create_async_engine(url = DB_URL_PG, echo=True,pool_size=8)
