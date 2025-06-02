@@ -24,6 +24,9 @@ jobs:
           
       - name: Install dependencies
         run: pip install -r docs_requirements.txt
+
+      - name: Show installed packages
+        run: pip list
           
       - name: Build documentation
         run: mkdocs build --site-dir ./site
